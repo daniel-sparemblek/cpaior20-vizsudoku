@@ -1,0 +1,7 @@
+pandas
+numpy
+scipy
+ortools
+torch
+torchvision
+tqdm
