@@ -24,14 +24,18 @@ def main():
     args = parser.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    
+    print(os.getcwd())
+    new_cwd = './cpaior20-vizsudoku'
+    # Change the current working directory
+    os.chdir(new_cwd)
+    print(os.getcwd())
     print('loading data')
     # from https://github.com/locuslab/SATNet/blob/master/exps/sudoku.py
-    with open(os.path.join(args.datadir,'features.pt'), 'rb') as f:
+    with open(os.path.join('data', 'features.pt'), 'rb') as f:
         X_in = torch.load(f)
-    with open(os.path.join(args.datadir,'features_img.pt'), 'rb') as f:
+    with open(os.path.join('data', 'features_img.pt'), 'rb') as f:
         Ximg_in = torch.load(f)
-    with open(os.path.join(args.datadir,'labels.pt'), 'rb') as f:
+    with open(os.path.join('data', 'labels.pt'), 'rb') as f:
         Y_in = torch.load(f)
     
     n = X_in.size(1)
@@ -67,7 +71,7 @@ def main():
             'comput_time':[]}
         [stats.update({'rank-{}'.format(i):[] }) for i in range(0, 9)]
         
-        solver = SudokuSolver(not args.use_cppy)
+        solver = SudokuSolver()
             
             
         for puz_idx in tqdm(range(X_in.size(0)), desc='puzzle instances'):

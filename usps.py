@@ -203,7 +203,7 @@ def main():
                            transforms.Normalize((0.1307,), (0.3081,))
                        ])
 
-    train_dataset = datasets.MNIST('data', train=True, download=True,
+    train_dataset = datasets.USPS('data', train=True, download=True,
                        transform=data_transform)
 
     split = int(np.floor_divide(len(train_dataset), 1/0.8)) # 80% train, 20% valid
